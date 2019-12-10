@@ -38,6 +38,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 import com.kakao.util.helper.log.Logger;
 import com.yujinhong.myapplication2.MainActivity;
 import com.yujinhong.myapplication2.R;
+import com.yujinhong.myapplication2.sharedPreferenceArrayList;
 import com.yujinhong.myapplication2.ui.login.LoginViewModel;
 import com.yujinhong.myapplication2.ui.login.LoginViewModelFactory;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +47,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -231,8 +233,6 @@ public class SignupActivity extends AppCompatActivity {
 
     private void registerUser(final String email, String password, String addr) {
         User user;
-        Set<String> prevEmailSet = loginInformation.getStringSet("email", null);
-        Set<String> prevPwSet = loginInformation.getStringSet("password", null);
 
         if(addr.equals("")) {
             user = new User(0, addr);
@@ -240,30 +240,8 @@ public class SignupActivity extends AppCompatActivity {
             user = new User(2, addr);
         }
 
-        Set<String> emailSet = new TreeSet<>();
-        if(prevEmailSet != null) {
-            String[] emailStrings = prevEmailSet.toArray(new String[]{});
-            for(int i=0;i<emailStrings.length;i++) {
-                emailSet.add(emailStrings[i]);
-            }
-        }
-        emailSet.add(email);
-        editor.putStringSet("email", emailSet);
-
-        Set<String> pwSet = new TreeSet<>();
-        if(prevPwSet != null) {
-            String[] pwStrings = prevPwSet.toArray(new String[]{});
-            for (int i = 0; i < pwStrings.length; i++) {
-                pwSet.add(pwStrings[i]);
-            }
-        }
-        pwSet.add(password);
-        editor.putStringSet("password", pwSet);
-
-//        editor.putString("email", email);
-//        editor.putString("password", password);
-        editor.commit();
-
+        sharedPreferenceArrayList.setJsonArrayList(loginInformation, "email", email);
+        sharedPreferenceArrayList.setJsonArrayList(loginInformation, "password", password);
 
         String changed_email = email.replace(".","");
         mDatabase.child("user_info").child(changed_email).setValue(user);

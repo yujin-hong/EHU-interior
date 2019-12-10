@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.kakao.util.helper.log.Logger;
 import com.yujinhong.myapplication2.MainActivity;
 import com.yujinhong.myapplication2.R;
+import com.yujinhong.myapplication2.sharedPreferenceArrayList;
 import com.yujinhong.myapplication2.ui.login.LoginViewModel;
 import com.yujinhong.myapplication2.ui.login.LoginViewModelFactory;
 
@@ -176,31 +177,10 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()) {
-//                            Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
                             SharedPreferences loginInformation = getSharedPreferences("setting",0);
-                            SharedPreferences.Editor editor = loginInformation.edit();
-                            Set<String> prevEmailSet = loginInformation.getStringSet("email", null);
-                            Set<String> prevPwSet = loginInformation.getStringSet("password", null);
-                            Set<String> emailSet = new TreeSet<>();
-                            if(prevEmailSet != null) {
-                                String[] emailStrings = prevEmailSet.toArray(new String[]{});
-                                for(int i=0;i<emailStrings.length;i++) {
-                                    emailSet.add(emailStrings[i]);
-                                }
-                            }
-                            emailSet.add(email);
-                            editor.putStringSet("email", emailSet);
+                            sharedPreferenceArrayList.setJsonArrayList(loginInformation, "email", email);
+                            sharedPreferenceArrayList.setJsonArrayList(loginInformation, "password", password);
 
-                            Set<String> pwSet = new TreeSet<>();
-                            if(prevPwSet != null) {
-                                String[] pwStrings = prevPwSet.toArray(new String[]{});
-                                for (int i = 0; i < pwStrings.length; i++) {
-                                    pwSet.add(pwStrings[i]);
-                                }
-                            }
-                            pwSet.add(password);
-                            editor.putStringSet("password", pwSet);
-                            editor.commit();
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {

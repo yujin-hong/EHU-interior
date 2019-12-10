@@ -12,6 +12,7 @@ import com.kakao.util.helper.log.Logger;
 import com.yujinhong.myapplication2.ui.login.LoginActivity;
 import com.yujinhong.myapplication2.ui.login.SignupActivity;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -22,11 +23,11 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loginInformation = this.getSharedPreferences("setting",0);
-        Set<String> prevEmailSet = loginInformation.getStringSet("email", null);
+        List<String> emailStrings = sharedPreferenceArrayList.getJsonArrayList(loginInformation, "email");
 
 //        setContentView(R.layout.activity_start);
 
-        if(prevEmailSet == null) {
+        if(emailStrings.isEmpty()) {
             setContentView(R.layout.activity_start);
         } else {
 //            Toast.makeText(getApplicationContext(), emailLength, Toast.LENGTH_LONG).show();
