@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences loginInformation;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private ProgressDialog progressDialog;
-    public String thisEmail;
-    public String thisPw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +102,9 @@ public class MainActivity extends AppCompatActivity {
             a.setOrientation(LinearLayout.VERTICAL);
             a.setLayoutParams(userParams);
 
-            thisEmail = emailStrings.get(i);
-            thisPw = pwStrings.get(i);
-//            thisPw = pwStrings[i];
+            final String thisEmail = emailStrings.get(i);
+            final String thisPw = pwStrings.get(i);
+
             ImageButton userImage = new ImageButton(this);
             userImage.setOnClickListener(new View.OnClickListener() {
                  @Override
@@ -134,6 +132,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signIn(String email, String password) {
+        Logger.e(email);
+        Logger.e(password);
+
+//        if(firebaseAuth.getCurrentUser()!=null) {
+//            Logger.e("someone login already..");
+//            firebaseAuth.signOut();
+////            Logger.e(firebaseAuth.getCurrentUser().toString());
+//        }
         progressDialog.setMessage("로그인중입니다. 잠시 기다려 주세요...");
         progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -150,6 +156,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+//        Logger.e("after");
+//        Logger.e(firebaseAuth.getCurrentUser().getEmail());
     }
 
     public void onClick02(View V) {
