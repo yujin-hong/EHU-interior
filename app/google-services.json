@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "737531389324",
+    "firebase_url": "https://project-ehu.firebaseio.com",
+    "project_id": "project-ehu",
+    "storage_bucket": "project-ehu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737531389324:android:52e984959ab592e0b2e2a9",
+        "android_client_info": {
+          "package_name": "com.yujinhong.myapplication2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737531389324-b5susuhvk3ras9n7gbjpkjiierr07lt0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yujinhong.myapplication2",
+            "certificate_hash": "4253ae3a86b3bac12ea59f2dd8fe62443c2d16e7"
+          }
+        },
+        {
+          "client_id": "737531389324-vem7c1klkeg01ic0pa2a8a8k1h065ikd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh4CqW-qxuF-Z6uKx1gH3T_OTux_cqmVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737531389324-vem7c1klkeg01ic0pa2a8a8k1h065ikd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
