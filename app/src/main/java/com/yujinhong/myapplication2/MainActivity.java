@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         LayoutParams userParams = new LinearLayout.LayoutParams(
                 LayoutParams.WRAP_CONTENT,
                 LayoutParams.WRAP_CONTENT);
-        LayoutParams imageParams = new LinearLayout.LayoutParams(150, 150);
+        LayoutParams imageParams = new LinearLayout.LayoutParams(300, 300);
         LayoutParams textParams = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT);
