@@ -15,4 +15,11 @@
     <string name="forgot_password"><u>"forget password?"</u></string>
     <string name="interior"><u>"인테리어 업자이십니까?"</u></string>
     <string name="title_activity_signup">Sign up</string>
+    <string name="title_activity_main5">Main5Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_add">Add</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_search">Search</string>
+    <string name="title_my">My</string>
+
 </resources>
