@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful()) {
 //                            Toast.makeText(getApplicationContext(), email, Toast.LENGTH_LONG).show();
 
-                            startActivity(new Intent(getApplicationContext(), Main5Activity.class));
+                            startActivity(new Intent(getApplicationContext(), Main6Activity.class));
                         } else {
                             Toast.makeText(getApplicationContext(), "시스템 에러입니다. 관리자에게 문의하세요.", Toast.LENGTH_LONG).show();
                         }

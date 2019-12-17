@@ -13,8 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Main6Activity"
+            android:label="@string/title_activity_main6"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".Main5Activity"
-            android:label="@string/title_activity_main5"></activity>
+            android:label="@string/title_activity_main5" />
         <activity android:name=".sharedPreferenceArrayList" />
         <activity
             android:name=".ui.login.SignupActivity"
