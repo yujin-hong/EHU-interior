@@ -1,19 +1,33 @@
 package com.yujinhong.myapplication2;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.kakao.util.helper.log.Logger;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -21,6 +35,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main6Activity extends AppCompatActivity {
 
@@ -29,9 +45,17 @@ public class Main6Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main6);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(),"Back clicked!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -50,7 +74,6 @@ public class Main6Activity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
         BottomNavigationView navViewBottom = findViewById(R.id.nav_view_bottom);
@@ -62,6 +85,62 @@ public class Main6Activity extends AppCompatActivity {
         NavController navControllerBottom = Navigation.findNavController(this, R.id.nav_host_fragment_bottom);
 //        NavigationUI.setupActionBarWithNavController(this, navControllerBottom, appBarConfiguration);
         NavigationUI.setupWithNavController(navViewBottom, navControllerBottom);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
+
+//        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);//your icon here
+//        Spannable text = new SpannableString("홈");
+//        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//        getSupportActionBar().setTitle("홈");
+        View viewActionBar = getLayoutInflater().inflate(R.layout.abs_layout, null);
+        ActionBar.LayoutParams params = new ActionBar.LayoutParams(//Center the textview in the ActionBar !
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                ActionBar.LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER);
+        getSupportActionBar().setCustomView(viewActionBar, params);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Drawable drawable= getResources().getDrawable(R.mipmap.ic_launcher);
+        Bitmap bitmap = getBitmapFromDrawable(drawable);
+        final Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+                @Override
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+//                    Main6Activity.this.invalidateOptionsMenu();
+                    toolbar.setNavigationIcon(newdrawable);
+                }
+
+                @Override
+                public void onDrawerClosed(View drawerView) {
+                    super.onDrawerClosed(drawerView);
+//                    Main6Activity.this.invalidateOptionsMenu();
+                    toolbar.setNavigationIcon(newdrawable);
+                }
+        };
+        drawer.addDrawerListener(toggle);
+
+        getSupportActionBar().setHomeAsUpIndicator(newdrawable);
+        toolbar.setNavigationIcon(newdrawable);
+//        toolbar.setLogo(newdrawable);
+        toolbar.invalidate();
+
+        TextView textviewTitle = viewActionBar.findViewById(R.id.actionbar_textview);
+        textviewTitle.setTextColor(Color.BLACK);
+        textviewTitle.setText("홈");
+    }
+
+    @NonNull
+    private Bitmap getBitmapFromDrawable(@NonNull Drawable drawable) {
+        final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(bmp);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bmp;
     }
 
     @Override
