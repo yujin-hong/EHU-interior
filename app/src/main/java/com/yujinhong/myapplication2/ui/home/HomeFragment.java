@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.yujinhong.myapplication2.Main6Activity;
 import com.yujinhong.myapplication2.R;
 
 public class HomeFragment extends Fragment {
@@ -30,6 +31,8 @@ public class HomeFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        Main6Activity.title.setText("홈");
+
         return root;
     }
 }

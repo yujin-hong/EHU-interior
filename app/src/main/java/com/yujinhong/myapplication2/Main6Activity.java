@@ -40,8 +40,10 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 public class Main6Activity extends AppCompatActivity {
-    static public Toolbar toolbar;
+    static public TextView title;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -50,23 +52,9 @@ public class Main6Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main6);
-        toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),"Back clicked!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
-//        FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -129,9 +117,9 @@ public class Main6Activity extends AppCompatActivity {
         });
 //        mDrawerToggle.setDrawerIndicatorEnabled(false);
 
-        TextView textviewTitle = viewActionBar.findViewById(R.id.actionbar_textview);
-        textviewTitle.setTextColor(Color.BLACK);
-        textviewTitle.setText("홈");
+        title = viewActionBar.findViewById(R.id.actionbar_textview);
+        title.setTextColor(Color.BLACK);
+        title.setText("홈");
     }
 
     @NonNull
