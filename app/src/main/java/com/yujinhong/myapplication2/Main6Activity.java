@@ -16,11 +16,13 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -39,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Main6Activity extends AppCompatActivity {
+    static public Toolbar toolbar;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -47,7 +50,7 @@ public class Main6Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main6);
-        final Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
 //            @Override
@@ -64,8 +67,8 @@ public class Main6Activity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -76,15 +79,17 @@ public class Main6Activity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        BottomNavigationView navViewBottom = findViewById(R.id.nav_view_bottom);
+        BottomNavigationView navViewBottom = (BottomNavigationView) findViewById(R.id.nav_view_bottom);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 //        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
 //                R.id.navigation_home, R.id.navigation_search,R.id.navigation_notifications, R.id.navigation_my)
 //                .build();
-        NavController navControllerBottom = Navigation.findNavController(this, R.id.nav_host_fragment_bottom);
+//        NavController navControllerBottom = Navigation.findNavController(this, R.id.nav_host_fragment_bottom);
 //        NavigationUI.setupActionBarWithNavController(this, navControllerBottom, appBarConfiguration);
-        NavigationUI.setupWithNavController(navViewBottom, navControllerBottom);
+        NavigationUI.setupWithNavController(navViewBottom, navController);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
@@ -99,35 +104,30 @@ public class Main6Activity extends AppCompatActivity {
                 ActionBar.LayoutParams.WRAP_CONTENT,
                 Gravity.CENTER);
         getSupportActionBar().setCustomView(viewActionBar, params);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Drawable drawable= getResources().getDrawable(R.mipmap.ic_launcher);
         Bitmap bitmap = getBitmapFromDrawable(drawable);
         final Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer,toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-                @Override
-                public void onDrawerOpened(View drawerView) {
-                    super.onDrawerOpened(drawerView);
-//                    Main6Activity.this.invalidateOptionsMenu();
-                    toolbar.setNavigationIcon(newdrawable);
-                }
-
-                @Override
-                public void onDrawerClosed(View drawerView) {
-                    super.onDrawerClosed(drawerView);
-//                    Main6Activity.this.invalidateOptionsMenu();
-                    toolbar.setNavigationIcon(newdrawable);
-                }
-        };
-        drawer.addDrawerListener(toggle);
-
         getSupportActionBar().setHomeAsUpIndicator(newdrawable);
         toolbar.setNavigationIcon(newdrawable);
-//        toolbar.setLogo(newdrawable);
-        toolbar.invalidate();
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(drawer.isDrawerOpen(GravityCompat.START)){
+                    drawer.closeDrawer(GravityCompat.START);
+                }else {
+                    drawer.openDrawer(GravityCompat.START);
+                }
+
+            }
+        });
+//        mDrawerToggle.setDrawerIndicatorEnabled(false);
 
         TextView textviewTitle = viewActionBar.findViewById(R.id.actionbar_textview);
         textviewTitle.setTextColor(Color.BLACK);
@@ -135,7 +135,7 @@ public class Main6Activity extends AppCompatActivity {
     }
 
     @NonNull
-    private Bitmap getBitmapFromDrawable(@NonNull Drawable drawable) {
+    public static Bitmap getBitmapFromDrawable(@NonNull Drawable drawable) {
         final Bitmap bmp = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(bmp);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -149,6 +149,7 @@ public class Main6Activity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main6, menu);
         return true;
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {

@@ -16,6 +16,7 @@
         <activity
             android:name=".Main6Activity"
             android:label="@string/title_activity_main6"
+            android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Main5Activity"
