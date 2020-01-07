@@ -20,11 +20,21 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+<!--    <include-->
+<!--        layout="@layout/content_main5"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="56dp"-->
+<!--        android:layout_marginBottom="56dp"-->
+<!--        android:visibility="visible" />-->
+
     <include
         layout="@layout/content_main6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
         android:layout_marginBottom="56dp" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

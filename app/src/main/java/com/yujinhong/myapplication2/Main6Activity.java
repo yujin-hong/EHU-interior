@@ -23,6 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -30,6 +32,12 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.kakao.util.helper.log.Logger;
+import com.yujinhong.myapplication2.ui.add.AddFragment;
+import com.yujinhong.myapplication2.ui.home.HomeFragment;
+import com.yujinhong.myapplication2.ui.my.MyFragment;
+import com.yujinhong.myapplication2.ui.notifications.NotificationsFragment;
+import com.yujinhong.myapplication2.ui.search.SearchFragment;
+import com.yujinhong.myapplication2.ui.share.ShareFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -64,10 +72,10 @@ public class Main6Activity extends AppCompatActivity {
                 R.id.nav_tools, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        BottomNavigationView navViewBottom = (BottomNavigationView) findViewById(R.id.nav_view_bottom);
+        final BottomNavigationView navViewBottom = (BottomNavigationView) findViewById(R.id.nav_view_bottom);
 
 
         // Passing each menu ID as a set of Ids because each
@@ -77,7 +85,26 @@ public class Main6Activity extends AppCompatActivity {
 //                .build();
 //        NavController navControllerBottom = Navigation.findNavController(this, R.id.nav_host_fragment_bottom);
 //        NavigationUI.setupActionBarWithNavController(this, navControllerBottom, appBarConfiguration);
+
+//        navViewBottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                Fragment selectedFragment = null;
+//
+//                switch (menuItem.getItemId()) {
+//                    case R.id.navigation_add:
+//                        selectedFragment = AddFragment.newInstance();
+//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                        transaction.replace(R.id.nav_host_fragment,selectedFragment);
+//                        transaction.addToBackStack(null);
+//                        transaction.commit();
+//                        return true;
+//                }
+//                return false;
+//            }
+//        });
         NavigationUI.setupWithNavController(navViewBottom, navController);
+
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));

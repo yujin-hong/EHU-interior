@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation_bottom"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_add">
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_home"-->
@@ -14,6 +14,11 @@
 <!--        android:id="@+id/navigation_search"-->
 <!--        android:name="com.yujinhong.myapplication2.ui.search.SearchFragment"-->
 <!--        tools:layout="@layout/fragment_search" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_add"-->
+<!--        android:name="com.yujinhong.myapplication2.ui.add.AddFragment"-->
+<!--        tools:layout="@layout/fragment_add" />-->
 
 <!--    <fragment-->
 <!--        android:id="@+id/navigation_notifications"-->

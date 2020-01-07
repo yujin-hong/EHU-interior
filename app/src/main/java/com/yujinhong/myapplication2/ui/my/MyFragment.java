@@ -27,14 +27,14 @@ public class MyFragment extends Fragment {
         myViewModel =
                 ViewModelProviders.of(this).get(MyViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my, container, false);
-        final TextView textView = root.findViewById(R.id.text_my);
-        myViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        Main6Activity.title.setText("마이 페이지");
+//        final TextView textView = root.findViewById(R.id.text_my);
+//        myViewModel.getText().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+        Main6Activity.title.setText("마이페이지");
 
 //        Drawable drawable= getResources().getDrawable(R.mipmap.ic_launcher);
 //        Bitmap bitmap = Main6Activity.getBitmapFromDrawable(drawable);
