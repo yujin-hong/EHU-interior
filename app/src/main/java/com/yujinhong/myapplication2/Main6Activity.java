@@ -52,7 +52,7 @@ import org.w3c.dom.Text;
 
 public class Main6Activity extends AppCompatActivity {
     static public TextView title;
-
+    static public ActionBarDrawerToggle mDrawerToggle;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override

@@ -36,4 +36,6 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+    <string name="game_view_content_description">Game view</string>
+
 </resources>

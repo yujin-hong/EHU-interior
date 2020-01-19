@@ -11,6 +11,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
     }
     buildTypes {
         release {
@@ -35,10 +38,31 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation(name: 'core-1.7.0', ext:'aar')
+    implementation(name: 'VuforiaWrapper', ext:'aar')
+    implementation files('libs/unity-classes.jar')
+    implementation(name: 'com.google.firebase.firebase-analytics-unity-6.8.1', ext:'aar')
+    implementation(name: 'com.google.firebase.firebase-app-unity-6.8.1', ext:'aar')
+    implementation(name: 'com.google.firebase.firebase-auth-unity-6.8.1', ext:'aar')
+    implementation(name: 'com.google.firebase.firebase-database-unity-6.8.1', ext:'aar')
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 }
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
 apply plugin: 'com.google.gms.google-services'
