@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.yujinhong.myapplication2.ui.tools.ToolsFragment"
+        android:name="com.yujinhong.myapplication2.ui.designreq.DesignreqFragment"
         android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_designreq" />
 
     <fragment
         android:id="@+id/nav_share"

@@ -53,6 +53,7 @@ import org.w3c.dom.Text;
 public class Main6Activity extends AppCompatActivity {
     static public TextView title;
     static public ActionBarDrawerToggle mDrawerToggle;
+
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -80,39 +81,13 @@ public class Main6Activity extends AppCompatActivity {
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_search,R.id.navigation_notifications, R.id.navigation_my)
-//                .build();
-//        NavController navControllerBottom = Navigation.findNavController(this, R.id.nav_host_fragment_bottom);
-//        NavigationUI.setupActionBarWithNavController(this, navControllerBottom, appBarConfiguration);
 
-//        navViewBottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//                Fragment selectedFragment = null;
-//
-//                switch (menuItem.getItemId()) {
-//                    case R.id.navigation_add:
-//                        selectedFragment = AddFragment.newInstance();
-//                        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.nav_host_fragment,selectedFragment);
-//                        transaction.addToBackStack(null);
-//                        transaction.commit();
-//                        return true;
-//                }
-//                return false;
-//            }
-//        });
         NavigationUI.setupWithNavController(navViewBottom, navController);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFFFFF")));
 
-//        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);//your icon here
-//        Spannable text = new SpannableString("홈");
-//        text.setSpan(new ForegroundColorSpan(Color.BLACK), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//        getSupportActionBar().setTitle("홈");
         View viewActionBar = getLayoutInflater().inflate(R.layout.abs_layout, null);
         ActionBar.LayoutParams params = new ActionBar.LayoutParams(//Center the textview in the ActionBar !
                 ActionBar.LayoutParams.WRAP_CONTENT,
@@ -121,32 +96,38 @@ public class Main6Activity extends AppCompatActivity {
         getSupportActionBar().setCustomView(viewActionBar, params);
 //        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 //        getSupportActionBar().setHomeButtonEnabled(true);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Drawable drawable= getResources().getDrawable(R.mipmap.ic_launcher);
         Bitmap bitmap = getBitmapFromDrawable(drawable);
         final Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 100, 100, true));
 
-        getSupportActionBar().setHomeAsUpIndicator(newdrawable);
+//        getSupportActionBar().setHomeAsUpIndicator(newdrawable);
         toolbar.setNavigationIcon(newdrawable);
-        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(
+        title = viewActionBar.findViewById(R.id.actionbar_textview);
+        title.setTextColor(Color.BLACK);
+        title.setText("홈");
+//
+        mDrawerToggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(title.getText()=="디자인 의뢰 글쓰기") {
+                    onBackPressed();
+                    getSupportActionBar().setHomeAsUpIndicator(newdrawable);
 
-                if(drawer.isDrawerOpen(GravityCompat.START)){
-                    drawer.closeDrawer(GravityCompat.START);
-                }else {
-                    drawer.openDrawer(GravityCompat.START);
+                } else {
+                    if(drawer.isDrawerOpen(GravityCompat.START)){
+                        drawer.closeDrawer(GravityCompat.START);
+                    }else {
+                        drawer.openDrawer(GravityCompat.START);
+                    }
                 }
-
             }
         });
-//        mDrawerToggle.setDrawerIndicatorEnabled(false);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
 
-        title = viewActionBar.findViewById(R.id.actionbar_textview);
-        title.setTextColor(Color.BLACK);
-        title.setText("홈");
+
     }
 
     @NonNull
