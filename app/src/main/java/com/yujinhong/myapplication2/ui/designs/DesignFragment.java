@@ -41,7 +41,6 @@ import com.yujinhong.myapplication2.ListViewAdapter;
 import com.yujinhong.myapplication2.Main6Activity;
 import com.yujinhong.myapplication2.R;
 import com.yujinhong.myapplication2.UnityPlayerActivity;
-import com.yujinhong.myapplication2.ui.tools.ToolsViewModel;
 
 
 import java.io.BufferedReader;
@@ -78,12 +77,12 @@ public class DesignFragment extends Fragment implements View.OnClickListener {
     List<Object> Array = new ArrayList<Object>();
 
 
-    private ToolsViewModel designViewModel;
+    private DesignViewModel designViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         designViewModel =
-                ViewModelProviders.of(this).get(ToolsViewModel.class);
+                ViewModelProviders.of(this).get(DesignViewModel.class);
         View root = inflater.inflate(R.layout.fragment_mydesign, container, false);
         Main6Activity.title.setText("내 인테리어 디자인");
 
