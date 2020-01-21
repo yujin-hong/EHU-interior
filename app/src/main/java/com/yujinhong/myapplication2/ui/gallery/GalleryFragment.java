@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.yujinhong.myapplication2.Main6Activity;
 import com.yujinhong.myapplication2.R;
 
 public class GalleryFragment extends Fragment {
@@ -23,6 +24,8 @@ public class GalleryFragment extends Fragment {
         galleryViewModel =
                 ViewModelProviders.of(this).get(GalleryViewModel.class);
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        Main6Activity.title.setText("인테리어 시공견적 의뢰");
+
         final TextView textView = root.findViewById(R.id.text_gallery);
         galleryViewModel.getText().observe(this, new Observer<String>() {
             @Override

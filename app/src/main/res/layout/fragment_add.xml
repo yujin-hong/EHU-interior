@@ -74,7 +74,7 @@
                     android:textColor="@android:color/black" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/go_design_commission"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -113,7 +113,7 @@
                     android:textColor="@android:color/black" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/go_design"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -151,7 +151,7 @@
                     android:textColor="@android:color/black" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/go_sigong_commission"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
