@@ -68,7 +68,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/goto_design"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10sp"
@@ -245,7 +245,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView29"
+                    android:id="@+id/goto_mypage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10sp"
@@ -312,7 +312,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView37"
+                    android:id="@+id/goto_design_commission"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="10sp"
