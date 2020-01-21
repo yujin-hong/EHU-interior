@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-
+    <!--            navigation_gallery-->
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/navigation_my"
             android:title="내 프로필" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/navigation_mydesign"
             android:title="내 디자인" />
         <item android:title="사이트맵">
             <menu>

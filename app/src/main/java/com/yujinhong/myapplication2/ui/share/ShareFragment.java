@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.yujinhong.myapplication2.Main6Activity;
 import com.yujinhong.myapplication2.R;
 
 public class ShareFragment extends Fragment {
@@ -23,6 +24,8 @@ public class ShareFragment extends Fragment {
         shareViewModel =
                 ViewModelProviders.of(this).get(ShareViewModel.class);
         View root = inflater.inflate(R.layout.fragment_share, container, false);
+        Main6Activity.title.setText("공지사항");
+
         final TextView textView = root.findViewById(R.id.text_share);
         shareViewModel.getText().observe(this, new Observer<String>() {
             @Override
