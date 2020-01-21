@@ -65,4 +65,10 @@
         android:id="@+id/navigation_my"
         android:name="com.yujinhong.myapplication2.ui.my.MyFragment"
         tools:layout="@layout/fragment_my" />
+
+    <fragment
+        android:id="@+id/navigation_mydesign"
+        android:name="com.yujinhong.myapplication2.ui.designs.DesignFragment"
+        tools:layout="@layout/fragment_mydesign" />
+
 </navigation>
